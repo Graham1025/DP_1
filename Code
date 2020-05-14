@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void subset(int array[], int i, int target, int index[], int k)
+{
+	if (i < 0) return;
+	if (array[i] == target)
+	{
+		index[k] = i;
+		for (int j = 0; j <= k; j++)
+			printf("%d,", index[j]);
+		printf("\n");
+	}
+	if (array[i] < target)
+	{
+		index[k] = i;
+		subset(array, i - 1, target - array[i], index, k + 1);
+	}
+	subset(array, i - 1, target, index, k);
+}
+
+int main()
+{
+	int array[6] = { 3, 2, 5, 7, 4, 9 }, index[6] = { 0 }, target = 9, k = 0, i = 5;
+	subset(array, i, target, index, k);
+	getchar();
+}
